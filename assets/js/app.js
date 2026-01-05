@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ============================================
 
 async function loadLanguage(lang) {
-  const dataFile = `./_data/data-${lang}.json`;
+  const dataFile = `_data/data-${lang}.json`;
   const response = await fetch(dataFile);
 
   if (!response.ok) {
