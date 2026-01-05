@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESUME</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- 引用ionicons svg图库 -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <!-- -------------div-信息栏--------------- -->
+    <div class="head">
+        <h2>古永丰</h2>
+        <div>
+            <ion-icon name="call"></ion-icon><span>15369998659</span>&nbsp;
+            <ion-icon name="mail"></ion-icon><span>yongfenggu@tju.edu.cn</span>&nbsp;
+            <a href="https://github.com/GGyongfeng">
+                <ion-icon name="logo-github"></ion-icon><span>GGyongfeng</span>&nbsp;
+            </a>
+            <a href="https://guyongfeng.cn">
+                <ion-icon name="planet"></ion-icon><span>guyongfeng.cn</span>&nbsp;
+            </a>
+        </div>
+    </div>
+    <!-- ------------------------------------  -->
+
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <!-- div-教育经历 -->
+    <div class="part">
+        <div class="title">
+            <img src="../icon/学历.svg" alt="education">
+            <h3>教育经历</h3>
+        </div>
+
+        <div class="bar heighter">
+            <strong>本科 | 天津大学</strong>
+            <span>2020.09 - 2024.07</span>
+        </div>
+
+        <span>精密仪器与光电子工程学院 智能感知工程专业</span>
+
+        <div class="bar heighter">
+            <strong>硕士 | 天津大学</strong>
+            <span>2024.09 - 2027.06</span>
+        </div>
+
+        <span>精密仪器与光电子工程学院 仪器科学与技术专业</span>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <div class="part">
+        <div class="title">
+            <img src="../icon/计算机水平.svg" alt="education">
+            <h3>相关技能</h3>
+        </div>
+        <ul id="jineng">
+            <li>
+                <span>① 前端开发</span>
+                <span>|</span>
+                <span>精通</span><br>
+                精通 HTML、CSS、JavaScript 等核心技术；熟悉 SCSS 与 TypeScript；精通 Vue.js 框架，掌握 Vue Router、Pinia、Vite 等生态工具；熟练使用 Element Plus 等组件库进行页面开发；具备调用 RESTful API 实现前后端数据交互的能力。
+            </li>
+        
+            <li><span>② 后端开发</span>
+                <span>|</span>
+                <span>熟练</span><br>
+                熟悉 Node.js 与 Express 框架；能搭建基础 API 服务并处理路由与中间件逻辑；了解 MySQL 数据库操作；掌握 Nginx 配置与部署流程；具备处理接口安全、跨域、数据传输的能力。
+            </li>
+
+            <li><span>③ 机器学习</span>
+                <span>|</span>
+                <span>掌握</span><br>
+                熟练使用 Python 进行数据分析与模型开发；掌握 PyTorch 深度学习框架，能够搭建与训练 CNN、RNN、Transformer 等常用模型；具备数据预处理、特征工程、模型调优等实践能力；了解目标检测、图像分类等计算机视觉任务的解决方案。
+            </li>
+        
+            <li><span>④ 嵌入式开发</span>
+                <span>|</span>
+                <span>掌握</span><br>
+                掌握 ESP32 开发与 ESP-IDF 框架使用；能够使用 C/C++ 编写嵌入式程序实现传感器控制、数据处理与通信协议对接；熟悉 UART、TTL、RS485 等接口协议及其调试流程。
+            </li>
+        
+            <li><span>⑤ 电子结构设计</span>
+                <span>|</span>
+                <span>具备能力</span><br>
+                熟练使用 SolidWorks 与 Fusion 360 进行结构建模与装配设计；具备产品外壳设计与结构干涉分析能力；掌握嘉立创EDA 等 PCB 设计工具，了解电路板尺寸约束与基础布线规则。
+            </li>
+        </ul>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+ 
+
+
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <!-- div-项目经历 -->
+    <div class="part xmjl">
+        <div class="title">
+            <img src="../icon/项目经历.svg" alt="education">
+            <h3>项目经历</h3>
+        </div>
+
+        <!-- 联轴器对中设备项目 -->
+        <div class="bar heighter">
+            <a href="https://github.com/GGyongfeng/LaserCouplingAlignment_ESP32">
+            <strong>联轴器自动对中辅助设备开发</strong></a>
+            <strong>嵌入式工程师 & 结构工程师</strong>
+            <strong>天津电建公司</strong>
+            <span>2025.02 - 至 今</span>
+        </div>
+        <ul>
+            <li class="dot">
+                <strong>内容：</strong>为天津电建公司研发联轴器自动对中系统，基于多传感器融合方案（激光+陀螺仪）搭建数据采集系统，取代千分尺人工测量方式，实现非接触式实时监测，测量效率提升3倍，精度达±0.01mm
+            </li>
+            <li class="dot">
+                <strong>职责：</strong>1）结构设计：使用SolidWorks完成设备结构设计与外壳建模；2）嵌入式开发：ESP32实现传感器数据采集、处理与HTTP通信服务；3）上位机程序：web技术实现上位机可视化界面与对中算法
+            </li>
+            <li class="dot">
+                <strong>技术栈：</strong>
+                ESP32 + C++（嵌入式）｜ SolidWorks（结构设计）｜ Vue（上位机）｜
+                485/UART/Http协议（通信）
+            </li>
+        </ul>
+        <!-- 联轴器项目结束 -->
+
+
+
+
+
+
+        <!-- 教培订单管理系统项目 -->
+        <div class="bar heighter">
+            <a href="https://github.com/GGyongfeng/Huixue-frontend-manager">
+                <strong>教培订单管理系统</strong></a>
+            <strong>全栈开发工程师</strong>
+            <strong>汇学家教</strong>
+            <span>2024.12 - 2025.02</span>
+        </div>
+        <ul>
+            <li class="dot">
+                <strong>内容：</strong>开发覆盖6个城市的教培行业订单管理系统，支撑日活2k+用户，日订单300+，实现订单及用户管理核心功能。
+            </li>
+            <li class="dot">
+                <strong>职责：</strong>1）完成员工端（订单上传/管理）与教师端（接单）前端设计与实现；2）基于Express框架搭建后端服务；3）设计MySQL数据库结构；4）配置Nginx反向代理实现服务部署
+            </li>
+            <li class="dot">
+                <strong>技术栈：</strong>
+                Vue3 + TypeScript + SCSS + Element Plus（前端）｜ Node.js + Express + RESTful API（后端）｜
+                MySQL（数据库）｜ Nginx（部署）｜ Vite + pnpm（工程化）
+            </li>
+        </ul>
+        <!-- 教培订单管理系统项目结束 -->
+
+
+
+        <div class="bar heighter">
+            <a href="https://romateio.guyongfeng.cn/">
+                <strong>工业夹具设备的远程控制系统开发</strong></a>
+            <strong>全栈开发工程师</strong>
+            <strong>江苏北人公司</strong>
+            <span>2023.09 - 2024.03</span>
+        </div>
+        <ul>
+            <li class="dot">
+                <strong>内容：</strong>为汽车产线开发高兼容性远程控制系统，替代传统夹具操作模式，满足多车型混线生产需求。
+            </li>
+            <li class="dot">
+                <strong>职责：</strong>设计开发前端交互页面，并在嵌入式设备端搭建服务器，实现局域网对设备的状态实时监控与远程调控。
+            </li>
+            <li class="dot">
+                <strong>成果：</strong>实现生产状态远程控制与实时诊断，降低故障停机时长；支持16种车型混线生产，换型效率提升93%。
+            </li>
+            <li class="dot">
+                <strong>技术栈：</strong>
+                HTML + CSS + JavaScript（前端）｜ jQuery + Vue（框架）｜
+                Node.js + Express + Shell（后端）｜ Vite + Git
+            </li>
+        </ul>
+
+        <div class="bar heighter">
+            <a href="https://github.com/GGyongfeng/CLASSIFIER_NRRD">
+            <strong>基于深度学习优化儿童肺炎糖皮质激素治疗剂量</strong></a>
+            <strong>算法工程师</strong>
+            <strong>天津市儿童医院</strong>
+            <span>2024.07 - 2024.09</span>
+        </div>
+        <ul>
+            <li class="dot">
+                <strong>概述：</strong>构建一个基于深度学习的医学影像分析系统，专门用于优化儿童难治性支原体肺炎（RMPP）的糖皮质激素治疗剂量。通过分析 DICOM 格式的胸部 X 光片，系统能够自动评估肺炎严重程度，为临床医生提供治疗剂量建议。
+            </li>
+            <li class="dot">
+                <strong>职责：</strong>数据预处理、模型训练、参数调整、结果分析、&搭建模型落地应用（web应用形式）
+            </li>
+            <!-- <li class="dot">
+                <strong>成果：</strong>论文
+            </li> -->
+            <li class="dot">
+                <strong>技术栈：</strong>Python（数据处理与深度学习）｜ PyTorch（RESNET、MobileNetV2、CNN模型）｜ TensorFlow
+            </li>
+        </ul>
+
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <!-- 校园经历 -->
+    <div class="part" style="margin-top: 50px;">
+        <div class="title">
+            <img src="../icon/社团活动.svg" alt="education">
+            <h3>校园经历</h3>
+        </div>
+
+        <div class="bar">
+            <div>
+                <span class="weighter">校学生会</span>
+                <span class="weighter">新闻媒体部</span>
+                <span class="weighter">部长</span>
+            </div>
+            <span>2020.11 - 2023.09</span>
+        </div>
+        负责设计工作证、推送头图等，负责公众号运营、推送设计排版等工作
+
+        <div class="bar">
+            <div>
+                <span class="weighter">院年委会</span>
+                <span class="weighter">文体专员</span>
+            </div>
+            <span>2020.09 - 至&nbsp;&nbsp;&nbsp;今</span>
+        </div>
+        策划筹办学院新生迎新晚会、元旦晚会等院级大型活动；组织带队参加校歌校史演绎大赛取得优秀奖
+
+        <div class="bar">
+            <div>
+                <span class="weighter">班级</span>
+                <span class="weighter">班长</span>
+            </div>
+            <span>2020.09 - 2022.09</span>
+        </div>
+        带领班级参加团建活动、评获优秀团支部
+
+        <div class="bar">
+            <div>
+                <span class="weighter">党支部</span>
+                <span class="weighter">宣传委员</span>
+            </div>
+            <span>2022.06 - 至&nbsp;&nbsp;&nbsp;今</span>
+        </div>
+        负责设计制作海报、讲座PPT等内容，以及整理支部手册、组织学习、策划活动和撰写报告材料等工作
+
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <div class="part">
+        <div class="title">
+            <img src="../icon/自我评价.svg" alt="education">
+            <h3>其他</h3>
+        </div>
+        <div id="qita">
+            <strong>政治身份</strong>
+            中共党员
+            <br><strong>个人优势</strong>
+            热爱工作，做事积极主动，自学能力强，自驱力充足
+            <!-- <br><strong>校园经历</strong>
+            校学生会新闻媒体部部长\院年委会文体专员\班级班长\党支部宣传委员等 -->
+            <br><strong>奖项荣誉</strong>
+            iCAN大学生创新创业大赛天津赛区三等奖、天津大学优秀学生干部、优秀三好学生等
+            <br><strong>语言</strong>
+            英语六级445
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+    <!-- <button class="downlode" onclick="downloadResume()">--点击下载简历--</button> -->
+</body>
+<script>
+    function downloadResume() {
+        // 创建一个链接元素
+        var link = document.createElement('a');
+        // 设置链接的href属性为resume文件的路径
+        link.href = './RESUME.pdf';
+        // 设置链接的下载属性为"简历"，这样在某些浏览器中会提示用户下载"简历"而不是文件的实际名称
+        link.download = '简历-古永丰';
+        // 将链接显示在页面上（可选）
+        document.body.appendChild(link);
+        // 触发点击事件，开始下载
+        link.click();
+        // 移除链接元素（可选）
+        document.body.removeChild(link);
+    }
+</script>
+
+</html>
