@@ -3,179 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="古永丰的个人网站 - 全栈开发工程师 · 嵌入式工程师">
-    <meta name="keywords" content="古永丰, 全栈开发, 嵌入式, Vue.js, Node.js, 天津大学">
+    <meta name="description" content="古永丰 - 天津大学硕士研究生 · LLM Agent 算法研究">
+    <meta name="keywords" content="古永丰, LLM Agent, 天津大学, 机器学习, Yongfeng Gu">
     <meta name="author" content="古永丰">
-    <title>古永丰 | 全栈开发工程师</title>
+    <title>Yongfeng Gu | 古永丰</title>
 
     <!-- Favicon -->
     <link rel="icon" href="./assets/img/avatar.jpeg" type="image/jpeg">
 
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #000;
+        }
+
+        .nav-identity {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* About Section */
+        #about {
+            padding: 60px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .about-text .position {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .about-text a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
+        .about-avatar {
+            text-align: center;
+        }
+
+        .about-avatar img {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Contact Links */
+        .contact-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .contact-links a:hover {
+            color: #000;
+        }
+
+        /* Publications Section */
+        #publications {
+            padding: 60px 0;
+            background: #fafafa;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .research-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .publication-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .pub-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .pub-title a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            text-decoration: underline;
+        }
+
+        .pub-meta {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .pub-role {
+            font-weight: 500;
+            color: #444;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .exp-header {
+            margin-bottom: 10px;
+        }
+
+        .exp-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .exp-org {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .exp-period {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .exp-desc {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-avatar {
+                order: -1;
+            }
+
+            .nav-identity {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Loading -->
-    <div id="loading" class="loading">
-        <div class="spinner"></div>
-    </div>
-
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav>
         <div class="container nav-container">
-            <a href="#home" class="nav-brand">YF.GU</a>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link" data-nav="home">首页</a>
-                <a href="#about" class="nav-link" data-nav="about">关于</a>
-                <a href="#skills" class="nav-link" data-nav="skills">技能</a>
-                <a href="#projects" class="nav-link" data-nav="projects">项目</a>
-                <a href="#education" class="nav-link" data-nav="education">经历</a>
-                <a href="#contact" class="nav-link" data-nav="contact">联系</a>
+            <a href="#about" class="nav-brand">Yongfeng's Homepage</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#publications" class="nav-link">Publications</a>
             </div>
-            <div class="nav-actions">
-                <button class="lang-toggle" id="lang-toggle" aria-label="切换语言">
-                    <span class="lang-text">EN</span>
-                </button>
-                <button class="nav-toggle" id="nav-toggle" aria-label="切换菜单">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+            <span class="nav-identity">Tianjin University · Master Student</span>
         </div>
     </nav>
 
-    <!-- Header / Hero Section -->
-    <header id="home" class="hero">
+    <!-- About Section -->
+    <section id="about">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 id="name" class="hero-name"></h1>
-                    <p id="title" class="hero-title"></p>
-                    <p id="intro" class="hero-intro"></p>
-                    <div class="hero-cta">
-                        <a href="#projects" class="btn btn-primary">查看项目</a>
-                        <a href="#contact" class="btn btn-secondary">联系我</a>
+            <div class="about-content">
+                <div class="about-text">
+                    <h1>古永丰 (Yongfeng Gu)</h1>
+                    <p class="position">硕士研究生 @ 天津大学精密仪器与光电子工程学院</p>
+
+                    <p>我目前在天津大学攻读仪器科学与技术专业硕士学位（2024.09 - 2027.06），研究方向包括双目相机测量系统、相机标定算法、激光测距系统和嵌入式开发。</p>
+
+                    <p>2025年7月至2026年2月，我在 <a href="https://www.sophiapro.ai/" target="_blank">Karis (Sophiapro)</a> 担任 LLM Agent 算法实习生，负责&参与如下工作：</p>
+                    <ul style="margin-left: 20px; color: #555;">
+                        <li>ContextCompact: 探索上下文压缩策略，提升 ReAct 架构 Agent 的长步骤任务执行能力</li>
+                        <li>memoryspace: 设计通用可复制的 AgentMemory 机制，赋予 Agent 超长程任务能力</li>
+                        <li>sophia-eval: 基于 pydantic-ai 搭建 agent 评测框架，负责架构设计和基类实现</li>
+                        <li>eval-plat: 负责内部评测平台的全栈开发与迭代优化</li>
+                    </ul>
+
+
+                    <div class="contact-links">
+                        <a href="mailto:yongfenggu@tju.edu.cn">📧 yongfenggu@tju.edu.cn</a>
+                        <a href="https://github.com/GGyongfeng" target="_blank">GitHub: @GGyongfeng</a>
+                        <a href="https://scholar.google.com/citations?user=BwrMcW0AAAAJ" target="_blank">Google Scholar</a>
                     </div>
                 </div>
-                <div class="hero-avatar">
-                    <img id="avatar" src="" alt="古永丰">
+                <div class="about-avatar">
+                    <img src="./assets/img/avatar.jpeg" alt="古永丰">
                 </div>
             </div>
         </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title">
-                <ion-icon name="person-circle-outline"></ion-icon>
-                <span>关于我</span>
-            </h2>
-            <p id="bio" class="about-bio"></p>
-            <div id="tags" class="about-tags"></div>
-        </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
+    <!-- Publications Section -->
+    <section id="publications">
         <div class="container">
-            <h2 class="section-title">
-                <ion-icon name="code-slash-outline"></ion-icon>
-                <span>技能矩阵</span>
-            </h2>
-            <div id="skills-grid" class="skills-grid"></div>
-        </div>
-    </section>
+            <h2 class="section-title">Publications</h2>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <h2 class="section-title">
-                <ion-icon name="rocket-outline"></ion-icon>
-                <span>项目经历</span>
-            </h2>
-            <div id="projects-timeline" class="projects-timeline"></div>
-        </div>
-    </section>
+            <div class="research-category">
+                <h3 class="category-title">Chemistry & Materials Science</h3>
 
-    <!-- Education Section -->
-    <section id="education" class="section education">
-        <div class="container">
-            <h2 class="section-title">
-                <ion-icon name="school-outline"></ion-icon>
-                <span>教育经历</span>
-            </h2>
-            <div id="education-list" class="education-list"></div>
-
-            <h3 class="subsection-title">校园经历</h3>
-            <div id="campus-list" class="campus-list"></div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title">
-                <ion-icon name="mail-outline"></ion-icon>
-                <span>联系方式</span>
-            </h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <ion-icon name="mail"></ion-icon>
-                        <div>
-                            <h3>邮箱</h3>
-                            <p id="contact-email"></p>
-                        </div>
+                <div class="publication-item">
+                    <div class="pub-title">
+                        <a href="https://pubs.rsc.org/en/content/articlelanding/2026/sc/d5sc07902k" target="_blank">
+                            Organic Neuromorphic Vision Devices with Multilevel Memory for Palmprint Identification
+                        </a>
                     </div>
-                    <div class="contact-item">
-                        <ion-icon name="call"></ion-icon>
-                        <div>
-                            <h3>电话</h3>
-                            <p id="contact-phone"></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <ion-icon name="logo-github"></ion-icon>
-                        <div>
-                            <h3>GitHub</h3>
-                            <a id="contact-github" href="#" target="_blank"></a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <ion-icon name="planet"></ion-icon>
-                        <div>
-                            <h3>网站</h3>
-                            <a id="contact-website" href="#" target="_blank"></a>
-                        </div>
+                    <div class="pub-meta">
+                        <span class="pub-role">Second Author</span> · Chemical Science, Royal Society of Chemistry · 2026
                     </div>
                 </div>
-                <div id="other-info" class="other-info"></div>
+            </div>
+
+            <div class="research-category">
+                <h3 class="category-title">Work Experience</h3>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">LLM Agent 算法实习生 @ Karis (Sophiapro)</div>
+                        <div class="exp-org">北京</div>
+                        <div class="exp-period">2025.07 - 2026.02</div>
+                    </div>
+                    <div class="exp-desc">
+                        从事 LLM Agent 系统开发，包括上下文压缩、记忆机制设计、评测框架搭建和全栈平台开发。
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-category">
+                <h3 class="category-title">Selected Projects</h3>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">教培订单管理系统 - 全栈开发</div>
+                        <div class="exp-org">汇学家教</div>
+                        <div class="exp-period">2024.12 - 2025.02</div>
+                    </div>
+                    <div class="exp-desc">
+                        开发覆盖6个城市的订单管理系统，支撑日活2k+用户，日订单300+。技术栈：Vue3/TypeScript、Node.js/Express、MySQL。
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">基于深度学习预测儿童肺炎治疗剂量</div>
+                        <div class="exp-org">天津市儿童医院</div>
+                        <div class="exp-period">2024.07 - 2024.09</div>
+                    </div>
+                    <div class="exp-desc">
+                        训练 CNN 模型分析胸部 X 光片，为临床医生提供治疗建议。技术栈：PyTorch、ResNet/MobileNetV2、ONNX Runtime。
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p>&copy; 2025 古永丰 · Made with <ion-icon name="heart"></ion-icon> in Tianjin</p>
-            <div class="footer-links">
-                <a id="footer-github" href="#" target="_blank">
-                    <ion-icon name="logo-github"></ion-icon>
-                </a>
-                <a id="footer-website" href="#" target="_blank">
-                    <ion-icon name="planet-outline"></ion-icon>
-                </a>
-            </div>
+            <p>&copy; <span id="year"></span> Yongfeng Gu</p>
         </div>
     </footer>
 
-    <!-- Main Script -->
-    <script src="./assets/js/app.js?v=2"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
