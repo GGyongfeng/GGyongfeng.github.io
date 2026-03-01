@@ -311,6 +311,233 @@
                 display: none;
             }
         }
+
+        /* Chat Section */
+        #chat {
+            padding: 60px 0;
+            background: #fafafa;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .chat-box {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-messages {
+            min-height: 200px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 14px 18px;
+            border-radius: 3px;
+            line-height: 1.7;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #333;
+            color: white;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: #f8f8f8;
+            color: #333;
+            border-left: 3px solid #e0e0e0;
+        }
+
+        .message.system {
+            align-self: center;
+            background: transparent;
+            color: #999;
+            font-size: 13px;
+            max-width: 85%;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            padding: 8px 16px;
+        }
+
+        .message.error {
+            align-self: center;
+            background: #fff8e1;
+            color: #f57c00;
+            border: 1px solid #ffe0b2;
+            font-size: 13px;
+            max-width: 85%;
+            text-align: center;
+        }
+
+        .chat-input-container {
+            padding: 24px 40px;
+            background: #fafafa;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            padding: 12px 16px;
+            font-size: 14px;
+            outline: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #fff;
+            transition: border-color 0.2s;
+            resize: none;
+        }
+
+        .chat-input:focus {
+            border-color: #666;
+        }
+
+        .chat-send {
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            padding: 0 28px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: Georgia, 'Times New Roman', serif;
+            white-space: nowrap;
+        }
+
+        .chat-send:hover:not(:disabled) {
+            background: #000;
+            transform: translateY(-1px);
+        }
+
+        .chat-send:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .chat-send:disabled {
+            background: #ddd;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background: #f8f8f8;
+            border-left: 3px solid #e0e0e0;
+            padding: 14px 18px;
+            border-radius: 3px;
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #bbb;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-messages {
+                min-height: 150px;
+                max-height: 400px;
+                padding: 24px;
+                gap: 16px;
+            }
+
+            .chat-input-container {
+                padding: 16px 24px;
+            }
+
+            .message {
+                max-width: 82%;
+                padding: 12px 14px;
+            }
+
+            .chat-send {
+                padding: 0 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -319,7 +546,8 @@
         <div class="container nav-container">
             <a href="#about" class="nav-brand"><img src="static/favicon-1.png" alt="favicon" style="height: 1.2em; vertical-align: middle; margin-right: 0.5em;">Yongfeng's Homepage</a>
             <div class="nav-links">
-                <a href="#about" class="nav-link active">About</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#chat" class="nav-link">Chat</a>
                 <a href="./pages/index.html" class="nav-link">Apps</a>
             </div>
         </div>
@@ -425,6 +653,30 @@
         </div>
     </section>
 
+    <!-- Chat Section -->
+    <section id="chat">
+        <div class="chat-container">
+            <h2 class="section-title">Chat with Me</h2>
+            <div class="chat-box">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message system">
+                        你好！我是古永丰。你可以向我询问关于我的教育背景、工作经验、研究方向等问题。
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input
+                        type="text"
+                        class="chat-input"
+                        id="chatInput"
+                        placeholder="输入你的问题..."
+                        autocomplete="off"
+                    />
+                    <button class="chat-send" id="chatSend">发送</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -432,6 +684,8 @@
         </div>
     </footer>
 
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/llm-client.js"></script>
     <script>
         // Update copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -446,6 +700,127 @@
                 }
             });
         });
+
+        // Chat functionality
+        (function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const chatSend = document.getElementById('chatSend');
+
+            let llmClient = null;
+            let conversationHistory = [];
+            let userPrompt = '';
+
+            // 加载用户信息 prompt
+            async function loadUserPrompt() {
+                try {
+                    const response = await fetch('assets/prompts/user.md');
+                    if (response.ok) {
+                        userPrompt = await response.text();
+                        console.log('用户信息已加载');
+                    }
+                } catch (error) {
+                    console.error('加载用户信息失败:', error);
+                }
+            }
+
+            // 初始化 LLM 客户端
+            function initLLMClient() {
+                const systemPrompt = `你假装是古永丰本人，以第一人称回复用户问题。你的任务是回答访客关于古永丰的问题。
+
+以下是古永丰的个人信息：
+
+${userPrompt}
+
+请基于以上信息回答用户的问题。如果问题超出了你掌握的信息范围，请礼貌地说明你不确定。回答要简洁、友好、专业。`;
+
+                llmClient = new LLMClient({
+                    model: 'stepfun/step-3.5-flash:free',
+                    systemPrompt: systemPrompt
+                });
+
+                return true;
+            }
+
+            // 添加消息到聊天窗口
+            function addMessage(role, content) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${role}`;
+                messageDiv.textContent = content;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // 创建打字指示器
+            function createTypingIndicator() {
+                const indicator = document.createElement('div');
+                indicator.className = 'typing-indicator active';
+                indicator.innerHTML = '<span></span><span></span><span></span>';
+                chatMessages.appendChild(indicator);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return indicator;
+            }
+
+            // 发送消息
+            async function sendMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                // 检查并初始化客户端
+                if (!llmClient) {
+                    if (!initLLMClient()) return;
+                }
+
+                // 显示用户消息
+                addMessage('user', message);
+                chatInput.value = '';
+                chatSend.disabled = true;
+                chatInput.disabled = true;
+
+                // 显示打字指示器
+                const typingIndicator = createTypingIndicator();
+
+                try {
+                    // 调用 LLM
+                    const response = await llmClient.sendMessage(message, conversationHistory);
+
+                    // 更新对话历史
+                    conversationHistory.push(
+                        { role: 'user', content: message },
+                        { role: 'assistant', content: response }
+                    );
+
+                    // 移除打字指示器并显示 AI 回复
+                    typingIndicator.remove();
+                    addMessage('assistant', response);
+                } catch (error) {
+                    console.error('发送消息失败:', error);
+                    typingIndicator.remove();
+                    addMessage('error', '抱歉，发送消息时出现错误: ' + error.message);
+                } finally {
+                    chatSend.disabled = false;
+                    chatInput.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+            // 发送按钮点击事件
+            chatSend.addEventListener('click', function(e) {
+                e.preventDefault();
+                sendMessage();
+            });
+
+            // 回车发送
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // 初始化
+            loadUserPrompt();
+        })();
     </script>
 </body>
 </html>
