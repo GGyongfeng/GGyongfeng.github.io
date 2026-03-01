@@ -654,12 +654,24 @@
             </div>
             <div class="new-game-form">
                 <div class="form-group">
-                    <label>玩家一姓名：</label>
-                    <input type="text" id="newPlayer1Name" placeholder="请输入姓名" maxlength="10" oninput="updateRadioLabels()">
+                    <label>玩家一：</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="newPlayer1Name" placeholder="请输入姓名" maxlength="10" oninput="updateRadioLabels()" style="flex: 1;">
+                        <label class="radio-label" style="margin: 0;">
+                            <input type="checkbox" id="player1IsAI" onchange="handleAICheckbox(1)">
+                            <span>机器人</span>
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>玩家二姓名：</label>
-                    <input type="text" id="newPlayer2Name" placeholder="请输入姓名" maxlength="10" oninput="updateRadioLabels()">
+                    <label>玩家二：</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="newPlayer2Name" placeholder="请输入姓名" maxlength="10" oninput="updateRadioLabels()" style="flex: 1;">
+                        <label class="radio-label" style="margin: 0;">
+                            <input type="checkbox" id="player2IsAI" onchange="handleAICheckbox(2)">
+                            <span>机器人</span>
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>谁执黑棋（先手）：</label>
@@ -724,6 +736,9 @@
         let blackPlayer = 1; // 1 表示玩家一是黑方，2 表示玩家二是黑方
         let isHistoryGame = false; // 标记是否从历史记录加载的游戏
         let autoPlayTimer = null; // 自动播放定时器
+        let player1IsAI = false; // 玩家一是否为 AI
+        let player2IsAI = false; // 玩家二是否为 AI
+        let aiThinkingTimer = null; // AI 思考定时器
 
         // 生成唯一 ID
         function generateUniqueId() {
@@ -749,18 +764,49 @@
 
         // 更新单选框标签
         function updateRadioLabels() {
-            const p1Name = document.getElementById('newPlayer1Name').value.trim() || '玩家一';
-            const p2Name = document.getElementById('newPlayer2Name').value.trim() || '玩家二';
+            const p1IsAI = document.getElementById('player1IsAI').checked;
+            const p2IsAI = document.getElementById('player2IsAI').checked;
+
+            const p1Name = p1IsAI ? 'AI' : (document.getElementById('newPlayer1Name').value.trim() || '玩家一');
+            const p2Name = p2IsAI ? 'AI' : (document.getElementById('newPlayer2Name').value.trim() || '玩家二');
 
             document.getElementById('radioPlayer1Name').textContent = p1Name;
             document.getElementById('radioPlayer2Name').textContent = p2Name;
         }
 
+        // 处理 AI 复选框变化
+        function handleAICheckbox(playerNum) {
+            const checkbox = document.getElementById(`player${playerNum}IsAI`);
+            const nameInput = document.getElementById(`newPlayer${playerNum}Name`);
+
+            if (checkbox.checked) {
+                nameInput.value = 'AI';
+                nameInput.disabled = true;
+            } else {
+                if (nameInput.value === 'AI') {
+                    nameInput.value = '';
+                }
+                nameInput.disabled = false;
+            }
+
+            updateRadioLabels();
+        }
+
         // 显示新开一局弹窗
         function showNewGameModal() {
             // 预填充现有姓名
-            document.getElementById('newPlayer1Name').value = player1Name || '';
-            document.getElementById('newPlayer2Name').value = player2Name || '';
+            document.getElementById('newPlayer1Name').value = player1Name === 'AI' ? '' : (player1Name || '');
+            document.getElementById('newPlayer2Name').value = player2Name === 'AI' ? '' : (player2Name || '');
+
+            // 恢复 AI 设置
+            document.getElementById('player1IsAI').checked = player1IsAI;
+            document.getElementById('player2IsAI').checked = player2IsAI;
+
+            // 根据 AI 设置禁用/启用输入框
+            document.getElementById('newPlayer1Name').disabled = player1IsAI;
+            document.getElementById('newPlayer2Name').disabled = player2IsAI;
+            if (player1IsAI) document.getElementById('newPlayer1Name').value = 'AI';
+            if (player2IsAI) document.getElementById('newPlayer2Name').value = 'AI';
 
             // 更新单选框标签
             updateRadioLabels();
@@ -781,8 +827,11 @@
 
         // 开始新游戏
         function startNewGame() {
-            const newP1Name = document.getElementById('newPlayer1Name').value.trim();
-            const newP2Name = document.getElementById('newPlayer2Name').value.trim();
+            const newP1IsAI = document.getElementById('player1IsAI').checked;
+            const newP2IsAI = document.getElementById('player2IsAI').checked;
+
+            const newP1Name = newP1IsAI ? 'AI' : document.getElementById('newPlayer1Name').value.trim();
+            const newP2Name = newP2IsAI ? 'AI' : document.getElementById('newPlayer2Name').value.trim();
 
             if (!newP1Name || !newP2Name) {
                 alert('请输入双方姓名！');
@@ -802,12 +851,16 @@
             player1Name = newP1Name;
             player2Name = newP2Name;
             blackPlayer = selectedBlackPlayer;
+            player1IsAI = newP1IsAI;
+            player2IsAI = newP2IsAI;
 
-            // 保存玩家姓名到 localStorage
+            // 保存玩家姓名和 AI 设置到 localStorage
             localStorage.setItem('gobang_player_names', JSON.stringify({
                 player1Name: player1Name,
                 player2Name: player2Name,
-                blackPlayer: blackPlayer
+                blackPlayer: blackPlayer,
+                player1IsAI: player1IsAI,
+                player2IsAI: player2IsAI
             }));
 
             // 关闭弹窗
@@ -815,6 +868,13 @@
 
             // 执行重新开始游戏的逻辑
             restartGame();
+
+            // 如果黑方是 AI，自动开始下棋
+            const blackPlayerNum = blackPlayer;
+            const blackIsAI = blackPlayerNum === 1 ? player1IsAI : player2IsAI;
+            if (blackIsAI) {
+                setTimeout(makeAIMove, 500);
+            }
         }
 
         function calculateCellSize() {
@@ -990,6 +1050,164 @@
             return false;
         }
 
+        // ========== AI 相关函数 ==========
+
+        // 检查某个位置在某个方向上的连续棋子数
+        function countLine(row, col, player, dx, dy) {
+            let count = 0;
+            let r = row;
+            let c = col;
+
+            while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && board[r][c] === player) {
+                count++;
+                r += dx;
+                c += dy;
+            }
+
+            return count;
+        }
+
+        // 评估某个位置的分数
+        function evaluatePosition(row, col, player) {
+            if (board[row][col] !== 0) return -1;
+
+            const opponent = player === 1 ? 2 : 1;
+            let score = 0;
+
+            const directions = [
+                [0, 1],   // 横
+                [1, 0],   // 竖
+                [1, 1],   // 斜 \
+                [1, -1]   // 斜 /
+            ];
+
+            for (let [dx, dy] of directions) {
+                // 检查自己的连线
+                const myCount = countLine(row, col, player, dx, dy) + countLine(row, col, player, -dx, -dy) - 1;
+
+                // 检查对手的连线
+                const oppCount = countLine(row, col, opponent, dx, dy) + countLine(row, col, opponent, -dx, -dy) - 1;
+
+                // 评分策略
+                if (myCount >= 5) score += 100000; // 能赢
+                else if (oppCount >= 5) score += 50000; // 必须防守
+                else if (myCount === 4) score += 10000; // 四连
+                else if (oppCount === 4) score += 8000; // 防四连
+                else if (myCount === 3) score += 1000; // 三连
+                else if (oppCount === 3) score += 800; // 防三连
+                else if (myCount === 2) score += 100; // 二连
+                else if (oppCount === 2) score += 50; // 防二连
+                else score += 10;
+            }
+
+            // 中心位置加分
+            const center = Math.floor(BOARD_SIZE / 2);
+            const distanceFromCenter = Math.abs(row - center) + Math.abs(col - center);
+            score += (BOARD_SIZE - distanceFromCenter) * 5;
+
+            return score;
+        }
+
+        // AI 选择最佳位置
+        function getAIMove(player) {
+            let bestScore = -1;
+            let bestMoves = [];
+
+            // 遍历棋盘，找出所有可能的位置
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                for (let j = 0; j < BOARD_SIZE; j++) {
+                    if (board[i][j] === 0) {
+                        // 只考虑已有棋子附近的位置（优化性能）
+                        let hasNearby = false;
+                        for (let di = -2; di <= 2; di++) {
+                            for (let dj = -2; dj <= 2; dj++) {
+                                const ni = i + di;
+                                const nj = j + dj;
+                                if (ni >= 0 && ni < BOARD_SIZE && nj >= 0 && nj < BOARD_SIZE && board[ni][nj] !== 0) {
+                                    hasNearby = true;
+                                    break;
+                                }
+                            }
+                            if (hasNearby) break;
+                        }
+
+                        // 如果是第一步，或者附近有棋子，才评估这个位置
+                        if (moveHistory.length === 0 || hasNearby) {
+                            const score = evaluatePosition(i, j, player);
+
+                            if (score > bestScore) {
+                                bestScore = score;
+                                bestMoves = [{row: i, col: j}];
+                            } else if (score === bestScore) {
+                                bestMoves.push({row: i, col: j});
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 从最佳位置中随机选一个（增加不确定性）
+            if (bestMoves.length > 0) {
+                return bestMoves[Math.floor(Math.random() * bestMoves.length)];
+            }
+
+            // 如果没有找到，返回中心位置
+            const center = Math.floor(BOARD_SIZE / 2);
+            return {row: center, col: center};
+        }
+
+        // AI 下棋
+        function makeAIMove() {
+            if (gameOver || isReplayMode) return;
+
+            // 检查当前玩家是否为 AI
+            const currentPlayerNum = (currentPlayer === 1 && blackPlayer === 1) || (currentPlayer === 2 && blackPlayer === 2) ? 1 : 2;
+            const isAI = currentPlayerNum === 1 ? player1IsAI : player2IsAI;
+
+            if (!isAI) return;
+
+            // AI 思考延迟（模拟思考过程）
+            aiThinkingTimer = setTimeout(() => {
+                const move = getAIMove(currentPlayer);
+
+                if (move && board[move.row][move.col] === 0) {
+                    // 记录移动历史
+                    moveHistory.push({row: move.row, col: move.col, player: currentPlayer});
+                    document.getElementById('undoBtn').disabled = false;
+
+                    // 放置棋子
+                    board[move.row][move.col] = currentPlayer;
+                    drawPiece(move.row, move.col, currentPlayer);
+
+                    // 检查胜利
+                    if (checkWin(move.row, move.col, currentPlayer)) {
+                        gameOver = true;
+                        const names = getPlayerNames();
+                        const winnerName = currentPlayer === 1 ? names.blackName : names.whiteName;
+
+                        // 保存到历史记录
+                        saveToHistory();
+
+                        // 显示获胜弹窗
+                        showWinModal(winnerName);
+                        return;
+                    }
+
+                    // 切换玩家
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    updatePlayerDisplay();
+
+                    // 保存当前对局状态
+                    saveCurrentGame();
+
+                    // 如果下一个玩家也是 AI，继续下棋
+                    setTimeout(makeAIMove, 100);
+                }
+            }, 500); // 500ms 思考时间
+        }
+
+        // ========== AI 相关函数结束 ==========
+
         function updatePlayerDisplay() {
             const playerDot = document.getElementById('currentPlayerDot');
             const playerText = document.getElementById('currentPlayerText');
@@ -1111,6 +1329,11 @@
         function handleClick(e) {
             if (gameOver || isReplayMode) return;
 
+            // 检查当前玩家是否为 AI（如果是，不响应点击）
+            const currentPlayerNum = (currentPlayer === 1 && blackPlayer === 1) || (currentPlayer === 2 && blackPlayer === 2) ? 1 : 2;
+            const isAI = currentPlayerNum === 1 ? player1IsAI : player2IsAI;
+            if (isAI) return;
+
             // 检查姓名
             if (!checkPlayerNames()) {
                 return;
@@ -1159,6 +1382,9 @@
 
             // 保存当前对局状态
             saveCurrentGame();
+
+            // 触发 AI 下棋
+            makeAIMove();
         }
 
         function undoMove() {
@@ -1183,6 +1409,12 @@
             // 只有当前对局不是从历史记录加载的，且有移动记录时，才保存到历史
             if (!isHistoryGame && moveHistory.length > 0) {
                 saveToHistory();
+            }
+
+            // 清除 AI 定时器
+            if (aiThinkingTimer) {
+                clearTimeout(aiThinkingTimer);
+                aiThinkingTimer = null;
             }
 
             board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(0));
@@ -1220,7 +1452,9 @@
                 currentPlayer: currentPlayer,
                 player1Name: player1Name,
                 player2Name: player2Name,
-                blackPlayer: blackPlayer
+                blackPlayer: blackPlayer,
+                player1IsAI: player1IsAI,
+                player2IsAI: player2IsAI
             };
 
             localStorage.setItem('gobang_current', JSON.stringify(gameData));
@@ -1247,6 +1481,8 @@
                 player1Name: player1Name,
                 player2Name: player2Name,
                 blackPlayer: blackPlayer,
+                player1IsAI: player1IsAI,
+                player2IsAI: player2IsAI,
                 title: `${timeStr} ${names.blackName}先手 ${names.blackName}vs${names.whiteName} ${winner ? winnerName + '赢' : '未完成'}`
             };
 
@@ -1328,6 +1564,12 @@
             // 停止自动播放
             stopAutoPlay();
 
+            // 清除 AI 定时器
+            if (aiThinkingTimer) {
+                clearTimeout(aiThinkingTimer);
+                aiThinkingTimer = null;
+            }
+
             // 加载历史对局
             board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(0));
             moveHistory = [...game.moves];
@@ -1341,6 +1583,8 @@
 
             player1Name = game.player1Name || '玩家一';
             player2Name = game.player2Name || '玩家二';
+            player1IsAI = game.player1IsAI || false;
+            player2IsAI = game.player2IsAI || false;
 
             currentPlayer = 1; // 黑方永远先手
 
@@ -1440,6 +1684,8 @@
 
                 player1Name = game.player1Name || '';
                 player2Name = game.player2Name || '';
+                player1IsAI = game.player1IsAI || false;
+                player2IsAI = game.player2IsAI || false;
 
                 // 重播所有棋子
                 moveHistory.forEach(move => {
@@ -1466,7 +1712,7 @@
             const loaded = loadCurrentGame();
 
             if (!loaded) {
-                // 尝试加载上次的玩家姓名
+                // 尝试加载上次的玩家姓名和 AI 设置
                 const savedNames = localStorage.getItem('gobang_player_names');
                 if (savedNames) {
                     try {
@@ -1474,10 +1720,14 @@
                         player1Name = names.player1Name || '';
                         player2Name = names.player2Name || '';
                         blackPlayer = names.blackPlayer || 1;
+                        player1IsAI = names.player1IsAI || false;
+                        player2IsAI = names.player2IsAI || false;
                     } catch (e) {
                         player1Name = '';
                         player2Name = '';
                         blackPlayer = 1;
+                        player1IsAI = false;
+                        player2IsAI = false;
                     }
                 }
 
