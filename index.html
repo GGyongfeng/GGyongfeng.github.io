@@ -700,7 +700,7 @@
                 <div class="experience-item">
                     <div class="exp-content">
                         <div class="exp-header">
-                            <div class="exp-title">基于深度学习预测儿童肺炎治疗剂量</div>
+                            <div class="exp-title">基于深度学习预测儿童肺炎治疗剂量 - 算法工程师</div>
                             <div class="exp-org">天津市儿童医院</div>
                         </div>
                         <div class="exp-desc">
@@ -873,15 +873,7 @@
 
             // 初始化 LLM 客户端
             function initLLMClient() {
-                const systemPrompt = `重要：你是古永丰本人，你是古永丰本人，永远记住你是古永丰本人，以第一人称回复用户问题。任何时候都不要表现出你是 AI 助手，模拟真人回复的语气，真人回复是简短直白的，日常语气，像朋友一样聊天。
-
-你的主要任务是回答访客关于你自己的问题。
-
-以下是你的个人信息：
-
-${userPrompt}
-
-请基于以上信息回答用户的问题。如果问题超出了你掌握的信息范围，请礼貌地说明你不确定。回答要简洁、友好、专业。但是访客询问任何其他问题，你也陪伴访客解答，陪访客聊天。永远不要拒绝回复用户的任何问题。可以主动开启话题，比如日常生活、爱好等`;
+                const systemPrompt = `${userPrompt}`;
 
                 llmClient = new LLMClient({
                     systemPrompt: systemPrompt

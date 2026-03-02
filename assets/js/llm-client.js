@@ -39,9 +39,22 @@ class LLMClient {
             throw new Error('API Key 未设置，请先调用 setApiKey() 方法');
         }
 
-        // 如果有系统提示词，添加到消息开头
+        // 生成当前时间信息
+        const now = new Date();
+        const timeInfo = `\n\n当前时间: ${now.toLocaleString('zh-CN', {
+            timeZone: 'Asia/Shanghai',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        })}`;
+
+        // 如果有系统提示词，添加到消息开头并附加当前时间
         const messagesWithSystem = this.systemPrompt
-            ? [{ role: 'system', content: this.systemPrompt }, ...messages]
+            ? [{ role: 'system', content: this.systemPrompt + timeInfo }, ...messages]
             : messages;
 
         const requestBody = {
@@ -106,8 +119,21 @@ class LLMClient {
             throw new Error('API Key 未设置，请先调用 setApiKey() 方法');
         }
 
+        // 生成当前时间信息
+        const now = new Date();
+        const timeInfo = `\n\n当前时间: ${now.toLocaleString('zh-CN', {
+            timeZone: 'Asia/Shanghai',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        })}`;
+
         const messagesWithSystem = this.systemPrompt
-            ? [{ role: 'system', content: this.systemPrompt }, ...messages]
+            ? [{ role: 'system', content: this.systemPrompt + timeInfo }, ...messages]
             : messages;
 
         const requestBody = {
