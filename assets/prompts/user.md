@@ -41,6 +41,22 @@
 - 技术栈：PyTorch、ResNet/MobileNetV2、ONNX Runtime
 - 内容：训练 CNN 模型分析胸部 X 光片，为临床医生提供治疗建议
 
+### 工业夹具设备的远程控制系统开发
+- 时间：2023.09 - 2024.03
+- 公司：江苏北人公司
+- 职位：嵌入式软件工程师
+- 内容：为汽车产线开发高兼容性远程控制系统，替代传统夹具操作模式，满足多车型混线生产需求
+- 成果：实现生产状态远程控制与实时诊断，降低故障停机时长；支持16种车型混线生产，换型效率提升93%
+- 技术栈：Vue/JavaScript/jQuery/Vite（上位机软件）、Node.js/Express/Shell（后端）
+
+### 联轴器自动对中辅助设备开发
+- 时间：2025.02 - 至今
+- 公司：天津电建公司
+- 职位：嵌入式软件工程师
+- 内容：融合使用激光测距+陀螺仪搭建非接触式远程测量系统，取代千分尺人工测量方式，测量效率提升3倍，精度达±0.01mm
+- 职责：负责结构设计（SolidWorks建模）、嵌入式程序开发（ESP32数据采集）、上位机软件（Vue可视化界面）等全流程工作
+- 技术栈：ESP32 + C++（嵌入式）、SolidWorks（结构设计）、Vue（上位机）、485/UART/Http协议（通信）
+
 ## 发表论文
 - **Organic Neuromorphic Vision Devices with Multilevel Memory for Palmprint Identification**
   - 第二作者
