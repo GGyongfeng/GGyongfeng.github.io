@@ -373,21 +373,19 @@
             display: none;
         }
 
+        /* 隐藏滚动条但保持滚动功能 */
         .chat-messages::-webkit-scrollbar {
-            width: 6px;
+            display: none;
         }
 
-        .chat-messages::-webkit-scrollbar-track {
-            background: #f5f5f5;
+        /* 兼容 Firefox */
+        .chat-messages {
+            scrollbar-width: none;
         }
 
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: #ddd;
-            border-radius: 3px;
-        }
-
-        .chat-messages::-webkit-scrollbar-thumb:hover {
-            background: #ccc;
+        /* 兼容 IE/Edge */
+        .chat-messages {
+            -ms-overflow-style: none;
         }
 
         .message {
