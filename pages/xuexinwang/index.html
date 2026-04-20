@@ -279,8 +279,25 @@
                 },
                 created: function () {
                     this.init();
+                    this.checkAvatar();
                 },
                 methods: {
+                    checkAvatar: function () {
+                        var profiles = getProfiles();
+                        var idx = getActiveIndex();
+                        var p = profiles[idx] || profiles[0];
+                        if (!p.avatar) {
+                            var _this = this;
+                            this.$dialog.confirm({
+                                title: '提示',
+                                message: '您还未设置个人头像，前往「我的」完善个人配置？',
+                                confirmButtonText: '去设置',
+                                cancelButtonText: '稍后再说'
+                            }).then(function () {
+                                window.location.href = './profile.html';
+                            }).catch(function () {});
+                        }
+                    },
                     init: function () {
                         this.getXzOrMyd();//获取学职或者满意度初始化数据
                         this.getXzy(null);//获取新职业初始化数据

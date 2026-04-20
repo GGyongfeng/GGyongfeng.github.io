@@ -200,8 +200,7 @@
         </van-cell-group>
 
         <div class="save-btn-wrap">
-            <van-button type="primary" size="large" @click="save">保存修改</van-button>
-            <van-button type="default" size="large" class="btn-gap" @click="resetDefault">恢复默认</van-button>
+            <van-button type="default" size="large" @click="resetDefault">恢复默认</van-button>
             <van-button type="danger" size="large" class="btn-gap" v-if="profiles.length > 1" @click="deleteProfile(activeIndex)">删除此配置</van-button>
         </div>
 
@@ -270,6 +269,12 @@
                 cropper: null
             };
         },
+        watch: {
+            form: {
+                handler: function() { this.save(); },
+                deep: true
+            }
+        },
         methods: {
             goBack: function() { history.back(); },
             goUrl: function(url) { window.location.href = url; },
@@ -322,7 +327,6 @@
                 p.name = this.form.姓名 || ('配置' + (this.activeIndex + 1));
                 p.avatar = this.avatarSrc.indexOf('data:') === 0 ? this.avatarSrc : '';
                 this.persist();
-                this.$toast.success('保存成功');
             },
             resetDefault: function() {
                 var _this = this;
@@ -376,6 +380,7 @@
                 this.cropper.destroy();
                 this.cropper = null;
                 this.showCropper = false;
+                this.save();
                 this.$toast.success('头像已更新');
             },
             onGenderConfirm: function(v) { this.form.性别 = v; this.showGenderPicker = false; },
