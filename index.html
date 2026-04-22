@@ -74,12 +74,6 @@
             font-weight: 600;
         }
 
-        .nav-identity {
-            color: #666;
-            font-size: 14px;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
         /* About Section */
         #about {
             padding: 60px 0;
@@ -157,21 +151,7 @@
             opacity: 0.7;
         }
 
-        /* Publications Section */
-        #publications {
-            padding: 60px 0;
-            background: #fafafa;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #333;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
+        /* Chat Section */
         .chat-header {
             display: flex;
             justify-content: space-between;
@@ -210,119 +190,6 @@
             filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
         }
 
-        .research-category {
-            margin-bottom: 30px;
-        }
-
-        .category-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #333;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
-        .publication-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .pub-content {
-            flex: 1;
-        }
-
-        .pub-year {
-            color: #999;
-            font-size: 13px;
-            font-family: Georgia, 'Times New Roman', serif;
-            margin-left: 20px;
-            white-space: nowrap;
-        }
-
-        .pub-title {
-            font-weight: 500;
-            margin-bottom: 8px;
-            line-height: 1.5;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
-        .pub-title a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .pub-title a:hover {
-            text-decoration: underline;
-        }
-
-        .pub-meta {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
-        .pub-role {
-            font-weight: 500;
-            color: #444;
-        }
-
-        /* Experience Section */
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-
-        .exp-content {
-            flex: 1;
-        }
-
-        .exp-header {
-            margin-bottom: 10px;
-        }
-
-        .exp-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
-        .exp-org {
-            color: #666;
-            font-size: 14px;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-
-        .exp-period {
-            color: #999;
-            font-size: 13px;
-            font-family: Georgia, 'Times New Roman', serif;
-            margin-left: 20px;
-            white-space: nowrap;
-        }
-
-        .exp-desc {
-            color: #555;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
         /* Footer */
         footer {
             padding: 30px 0;
@@ -340,10 +207,6 @@
 
             .about-avatar {
                 order: -1;
-            }
-
-            .nav-identity {
-                display: none;
             }
         }
 
@@ -605,9 +468,11 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <a href="#about" class="nav-brand"><img src="assets/img/favicon-1.png" alt="favicon" style="height: 1.2em; vertical-align: middle; margin-right: 0.5em;">Yongfeng's Homepage</a>
+            <a href="./index.html" class="nav-brand"><img src="assets/img/favicon-1.png" alt="favicon" style="height: 1.2em; vertical-align: middle; margin-right: 0.5em;">Yongfeng's Homepage</a>
             <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
+                <a href="./publications.html" class="nav-link">Publications</a>
+                <a href="./experience.html" class="nav-link">Experience</a>
+                <a href="./projects.html" class="nav-link">Projects</a>
                 <a href="./pages/index.html" class="nav-link">Apps</a>
             </div>
         </div>
@@ -623,7 +488,7 @@
 
                     <p>我目前在天津大学攻读仪器科学与技术专业硕士学位（2024.09 - 2027.06），研究方向包括双目相机测量系统、相机标定算法、激光测距系统和嵌入式开发。</p>
 
-                    <p>2025年7月至2026年2月，我在 <a href="https://www.sophiapro.ai/" target="_blank">Karis (Sophiapro)</a> 担任 LLM Agent 算法实习生，负责 Agent Memory 和 Agent Eval 相关工作。</p>
+                    <p>2026年3月至今，我在 <a href="https://www.deepwisdom.ai/" target="_blank">DeepWisdom</a> 担任 Research Intern，参与 AEvo（智能体自主进化）、Foundation Protocol（Agent 通信协议）和 AutoWork（第一方个人智能体）等研究工作。此前，我在 <a href="https://www.sophiapro.ai/" target="_blank">Karis (Sophiapro)</a> 担任 LLM Agent 算法实习生，负责 Agent Memory 和 Agent Eval 相关工作。</p>
 
 
                     <div class="contact-links">
@@ -645,100 +510,6 @@
         </div>
     </section>
 
-    <!-- Publications Section -->
-    <section id="publications">
-        <div class="container">
-            <h2 class="section-title">Publications</h2>
-
-            <div class="publication-item">
-                <div class="pub-content">
-                    <div class="pub-title">
-                        <a href="https://pubs.rsc.org/en/content/articlelanding/2026/sc/d5sc07902k" target="_blank">
-                            Organic Neuromorphic Vision Devices with Multilevel Memory for Palmprint Identification
-                        </a>
-                    </div>
-                    <div class="pub-meta">
-                        <span class="pub-role">Second Author</span> · Chemical Science, Royal Society of Chemistry
-                    </div>
-                </div>
-                <div class="pub-year">2026</div>
-            </div>
-
-            <div class="research-category">
-                <h3 class="category-title">Work Experience</h3>
-
-                <div class="experience-item">
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div class="exp-title">LLM Agent 算法实习生 @ Karis (Sophiapro)</div>
-                            <div class="exp-org">北京</div>
-                        </div>
-                        <div class="exp-desc">
-                            从事 LLM Agent 系统开发，包括上下文压缩、记忆机制设计、评测框架搭建和全栈平台开发。
-                        </div>
-                    </div>
-                    <div class="exp-period">2025.07 - 2026.02</div>
-                </div>
-            </div>
-
-            <div class="research-category">
-                <h3 class="category-title">Selected Projects</h3>
-
-                <div class="experience-item">
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div class="exp-title">教培订单管理系统 - 全栈开发</div>
-                            <div class="exp-org">汇学家教</div>
-                        </div>
-                        <div class="exp-desc">
-                            开发覆盖6个城市的订单管理系统，支撑日活2k+用户，日订单300+。技术栈：Vue3/TypeScript、Node.js/Express、MySQL。
-                        </div>
-                    </div>
-                    <div class="exp-period">2024.12 - 2025.02</div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div class="exp-title">基于深度学习预测儿童肺炎治疗剂量 - 算法工程师</div>
-                            <div class="exp-org">天津市儿童医院</div>
-                        </div>
-                        <div class="exp-desc">
-                            训练 CNN 模型分析胸部 X 光片，为临床医生提供治疗建议。技术栈：PyTorch、ResNet/MobileNetV2、ONNX Runtime。
-                        </div>
-                    </div>
-                    <div class="exp-period">2024.07 - 2024.09</div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div class="exp-title">工业夹具设备的远程控制系统开发 - 嵌入式软件工程师</div>
-                            <div class="exp-org">江苏北人公司</div>
-                        </div>
-                        <div class="exp-desc">
-                            为汽车产线开发高兼容性远程控制系统，实现生产状态远程控制与实时诊断，支持16种车型混线生产，换型效率提升93%。技术栈：Vue/JavaScript/jQuery/Vite（上位机软件）、Node.js/Express/Shell（后端）。
-                        </div>
-                    </div>
-                    <div class="exp-period">2023.09 - 2024.03</div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div class="exp-title">联轴器自动对中辅助设备开发 - 嵌入式软件工程师</div>
-                            <div class="exp-org">天津电建公司</div>
-                        </div>
-                        <div class="exp-desc">
-                            融合激光测距+陀螺仪搭建非接触式远程测量系统，取代千分尺人工测量方式，测量效率提升3倍，精度达±0.01mm。负责结构设计（SolidWorks）、嵌入式程序开发（ESP32）、上位机软件（Vue）等全流程工作。技术栈：ESP32 + C++（嵌入式）、SolidWorks（结构设计）、Vue（上位机）、485/UART/Http协议（通信）。
-                        </div>
-                    </div>
-                    <div class="exp-period">2025.02 - 至今</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Chat Section -->
     <section id="chat">
         <div class="chat-container">
@@ -754,7 +525,7 @@
                     type="text"
                     class="chat-input"
                     id="chatInput"
-                    placeholder="你好呀！今天过得开心吗？可以和我聊聊～"
+                    placeholder=""
                     autocomplete="off"
                     maxlength="200"
                 />
@@ -858,16 +629,19 @@
                 }
             }
 
-            // 加载用户信息 prompt
+            // 加载 prompt（通过 manifest 加载所有文件）
             async function loadUserPrompt() {
                 try {
-                    const response = await fetch('assets/prompts/user.md');
-                    if (response.ok) {
-                        userPrompt = await response.text();
-                        console.log('用户信息已加载');
-                    }
+                    const res = await fetch('assets/prompts/manifest.json');
+                    if (!res.ok) return;
+                    const files = await res.json();
+                    const texts = await Promise.all(
+                        files.map(f => fetch(`assets/prompts/${f}`).then(r => r.ok ? r.text() : ''))
+                    );
+                    userPrompt = texts.join('\n\n');
+                    console.log('Prompt 已加载');
                 } catch (error) {
-                    console.error('加载用户信息失败:', error);
+                    console.error('加载 Prompt 失败:', error);
                 }
             }
 
@@ -938,7 +712,7 @@
 
             // 发送消息
             async function sendMessage() {
-                const message = chatInput.value.trim();
+                const message = chatInput.value.trim() || chatInput.placeholder;
                 if (!message) return;
 
                 // 检查并初始化客户端
@@ -1018,6 +792,18 @@
             // 初始化
             loadUserPrompt();
             loadChatHistory();
+
+            // 轮换 placeholder
+            fetch('assets/prompts/placeholders.json')
+                .then(r => r.json())
+                .then(placeholders => {
+                    let idx = Math.floor(Math.random() * placeholders.length);
+                    chatInput.placeholder = placeholders[idx];
+                    setInterval(() => {
+                        idx = (idx + 1) % placeholders.length;
+                        chatInput.placeholder = placeholders[idx];
+                    }, 5000);
+                });
         })();
     </script>
 </body>

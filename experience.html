@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="古永丰 - Work Experience">
+    <title>Experience | Yongfeng Gu</title>
+    <link rel="icon" href="./assets/img/favicon.png" type="image/jpeg">
+    <link rel="stylesheet" href="./assets/css/pages.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="./index.html" class="nav-brand">
+                <img src="assets/img/favicon-1.png" alt="favicon" style="height: 1.2em; vertical-align: middle; margin-right: 0.5em;">Yongfeng's Homepage
+            </a>
+            <div class="nav-links">
+                <a href="./publications.html" class="nav-link">Publications</a>
+                <a href="./experience.html" class="nav-link active">Experience</a>
+                <a href="./projects.html" class="nav-link">Projects</a>
+                <a href="./pages/index.html" class="nav-link">Apps</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-section">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+
+            <div class="exp-block">
+                <div class="exp-header-row">
+                    <div>
+                        <div class="item-title">Research Intern @ DeepWisdom</div>
+                        <div class="item-meta">深圳</div>
+                    </div>
+                    <div class="item-date">2026.03 - 至今</div>
+                </div>
+                <div class="item-desc">
+                    参与三项核心研究工作：
+                </div>
+                <ul class="exp-list">
+                    <li><strong>AEvo</strong>（智能体自主进化）—— 二作，投稿 NeurIPS 2026。探索让 Agent 从历史经验中自动演化学习流程。</li>
+                    <li><strong>Foundation Protocol</strong>（Agent 通信协议）—— 共一，ArXiv 白皮书。面向 AI 社会的图优先协议核心层，四平面架构设计。</li>
+                    <li><strong>AutoWork</strong>（第一方个人智能体）—— 负责记忆系统设计（SOUL.md/YOU.md/USER.md 三件套 + Memory Folds）、TUI/GUI/CLI 交互层、核心架构设计。</li>
+                </ul>
+            </div>
+
+            <div class="exp-block">
+                <div class="exp-header-row">
+                    <div>
+                        <div class="item-title">LLM Agent 算法实习生 @ Karis (Sophiapro)</div>
+                        <div class="item-meta">北京</div>
+                    </div>
+                    <div class="item-date">2025.07 - 2026.02</div>
+                </div>
+                <ul class="exp-list">
+                    <li><strong>ContextCompact</strong> —— 多层级上下文压缩策略（动态摘要 + 关键信息保留 + 滑动窗口），token 使用量降低 60%，Agent 可持续执行 100+ 步任务</li>
+                    <li><strong>memoryspace</strong> —— 自由迭代演化的通用 Agent Memory 架构，支持短期/长期/情景记忆分层存储与检索，向量数据库 + 关键词索引混合检索</li>
+                    <li><strong>sophia-eval</strong> —— 基于 pydantic-ai 搭建 Agent 评测框架（Dataset/Case/Runner 三层架构），支持多维度评测指标</li>
+                    <li><strong>eval-plat</strong> —— 内部评测平台全栈开发，Vue + TypeScript + Ant Design / FastAPI + SQLite</li>
+                    <li><strong>基础设施</strong> —— 核心代码 refactor/debug，统一 CLI 工具链（Click/Typer），结构化日志系统</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span class="year"></span> Yongfeng Gu</p>
+        </div>
+    </footer>
+    <script>document.querySelector('.year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
